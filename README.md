@@ -1,4 +1,4 @@
-# Tracking Repository
+# 🔹 Tracking Repository
 
 This repository implements the multi-object tracking component for the AI for FineTech Competition. It focuses on processing surveillance video sequences, detecting and tracking pedestrians, and generating outputs that will later be merged with the face re-identification results in the Integration Repository.
 
