@@ -7,11 +7,11 @@ class YOLOPreprocessor:
     def __init__(self, base_dir, output_dir):
         self.base_dir = base_dir
         self.output_dir = output_dir
-        self.train_img_dir = os.path.join(output_dir, "train/images")
-        self.train_label_dir = os.path.join(output_dir, "train/labels")
-        self.val_img_dir = os.path.join(output_dir, "val/images")
-        self.val_label_dir = os.path.join(output_dir, "val/labels")
-        self.test_img_dir = os.path.join(output_dir, "test/images")
+        self.train_img_dir = os.path.join(output_dir, "images/train")
+        self.train_label_dir = os.path.join(output_dir, "labels/train")
+        self.val_img_dir = os.path.join(output_dir, "images/val")
+        self.val_label_dir = os.path.join(output_dir, "labels/val")
+        self.test_img_dir = os.path.join(output_dir, "images/test")
         
         self._create_dirs()
 
