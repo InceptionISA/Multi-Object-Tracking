@@ -7,8 +7,8 @@
 Step1. Install ByteTrack.
 
 ```shell
-git clone https://github.com/ifzhang/ByteTrack.git
-cd ByteTrack
+git clone git@github.com:InceptionISA/Multi-Object-Tracking.git
+cd Multi-Object-Tracking/ByteTrack
 pip3 install -r requirements.txt
 python3 setup.py develop
 ```
