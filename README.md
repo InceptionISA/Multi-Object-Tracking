@@ -96,7 +96,7 @@ For MOT20, you need to clip the bounding boxes inside the image.
 Add clip operation in [line 134-135 in data_augment.py](https://github.com/ifzhang/ByteTrackblob/72cd6dd24083c337a9177e484b12bb2b5b3069a6/yolox/data/data_augment.py#L134), [line 122-125 in mosaicdetection.py](https://github.com/ifzhang/ByteTrack/blob/72cd6dd24083c337a9177e484b12bb2b5b3069a6/yolox/data/datasets/mosaicdetection.py#L122), [line 217-225 in mosaicdetection.py](https://github.com/ifzhang/ByteTrack/blob/72cd6dd24083c337a9177e484b12bb2b5b3069a6/yolox/data/datasets/mosaicdetection.py#L217), [line 115-118 in boxes.py](https://github.com/ifzhang/ByteTrack/blob/72cd6dd24083c337a9177e484b12bb2b5b3069a6/yolox/utils/boxes.py#L115).
 
 ```shell
-python tools/train.py -f exps/example/mot/yolox_x_mix_mot20.py  -b 4 --fp16 -o -c pretrained/bytetrack_x_mot17.pth.tar
+python tools/train.py -f exps/example/mot/yolox_x_mot20.py  -b 4 --fp16 -o -c pretrained/bytetrack_x_mot17.pth.tar
 ```
 
 <!--
