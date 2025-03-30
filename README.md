@@ -89,7 +89,7 @@ python3 tools/convert_mot20_to_coco.py
 
 ## Training
 
-- **Train MOT20 test model (MOT20 train, CrowdHuman)**
+- **Train model on (MOT20 train)**
 
 For MOT20, you need to clip the bounding boxes inside the image.
 
