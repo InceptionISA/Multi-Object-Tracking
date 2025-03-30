@@ -1,4 +1,4 @@
-# Fine-tuned bytetrack_x_mot17 on Mot20
+# Fine-tuning bytetrack_x_mot17 on Mot20
 
 ## Installation
 
