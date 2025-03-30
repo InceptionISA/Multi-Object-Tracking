@@ -59,6 +59,8 @@ gdown --id 1P4mY0Yyd3PPTybgZkjMYhFri88nTmJX5 -O pretrained/
 
 download the data from these link [MOT20](https://motchallenge.net/) :
 
+then remove the mot20-01 seq
+
 ```shell
 wget https://motchallenge.net/data/MOT20.zip -O MOT20.zip
 
@@ -70,10 +72,6 @@ rm MOT20.zip
 ```
 
 ```
-https://motchallenge.net/data/MOT20.zip
-
-then remove the mot20-01
-
 datasets
 |
 └——————MOT20
