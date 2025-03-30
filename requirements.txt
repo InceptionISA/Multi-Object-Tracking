@@ -1,3 +1,0 @@
-ultralytics==8.3.78
-opencv-python==4.11.0.86
-pandas
