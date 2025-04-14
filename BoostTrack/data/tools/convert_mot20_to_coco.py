@@ -8,7 +8,7 @@ DATA_PATH = "data/MOT20"
 OUT_PATH = os.path.join(DATA_PATH, "annotations")
 
 # Process only val_half
-SPLIT = "val_half"
+SPLIT = "test"
 
 if __name__ == "__main__":
     if not os.path.exists(OUT_PATH):
