@@ -1,8 +1,6 @@
 # encoding: utf-8
 import os
-import random
 import torch
-import torch.nn as nn
 import torch.distributed as dist
 
 from yolox.exp import Exp as MyExp
@@ -11,23 +9,25 @@ from yolox.data import get_yolox_datadir
 class Exp(MyExp):
     def __init__(self):
         super(Exp, self).__init__()
-        self.num_classes = 1
-        self.depth = 1.33
-        self.width = 1.25
+        self.num_classes = 1  # MOT20 has only one class (person)
+        self.depth = 1.33     # Depth multiplier for YOLOX-X
+        self.width = 1.25     # Width multiplier for YOLOX-X
+        self.random_size = (20, 28)  # Keeps images smaller
+
         self.exp_name = os.path.split(os.path.realpath(__file__))[1].split(".")[0]
-        self.train_ann = "train.json"
-        self.val_ann = "test.json"    # change to train.json when running on training set
-        self.input_size = (800, 1440)
-        self.test_size = (800, 1440)
-        self.random_size = (18, 32)
-        self.max_epoch = 80
-        self.print_interval = 20
-        self.eval_interval = 5
-        self.test_conf = 0.001
-        self.nmsthre = 0.7
-        self.no_aug_epochs = 10
-        self.basic_lr_per_img = 0.001 / 64.0
-        self.warmup_epochs = 1
+        self.train_ann = "train.json"  # COCO-format annotations for MOT20 train
+        self.val_ann = "train.json"     # COCO-format annotations for MOT20 validation
+        self.input_size = (448, 800)  # Input size for training
+        self.test_size = (448, 800)   # Input size for testing
+        self.max_epoch = 20            # Fewer epochs for fine-tuning
+        self.print_interval = 200        # Print loss every 20 iterations
+        self.eval_interval = 99         # Evaluate every 99 epochs
+        self.test_conf = 0.05          # Confidence threshold for testing
+        self.nmsthre = 0.6             # NMS threshold
+        self.no_aug_epochs = 7         # Disable data augmentation in the last epochs
+        self.basic_lr_per_img = 0.0001
+        self.warmup_epochs = 3         # Warmup epochs
+
 
     def get_data_loader(self, batch_size, is_distributed, no_aug=False):
         from yolox.data import (
@@ -40,14 +40,14 @@ class Exp(MyExp):
         )
 
         dataset = MOTDataset(
-            data_dir=os.path.join(get_yolox_datadir(), "mix_det"),
+            data_dir=os.path.join(get_yolox_datadir(), "MOT20"),
             json_file=self.train_ann,
-            name='',
+            name='train',  # Use 'train' for training
             img_size=self.input_size,
             preproc=TrainTransform(
                 rgb_means=(0.485, 0.456, 0.406),
                 std=(0.229, 0.224, 0.225),
-                max_labels=500,
+                max_labels=600,
             ),
         )
 
@@ -58,7 +58,7 @@ class Exp(MyExp):
             preproc=TrainTransform(
                 rgb_means=(0.485, 0.456, 0.406),
                 std=(0.229, 0.224, 0.225),
-                max_labels=1000,
+                max_labels=1200,
             ),
             degrees=self.degrees,
             translate=self.translate,
@@ -95,10 +95,10 @@ class Exp(MyExp):
         from yolox.data import MOTDataset, ValTransform
 
         valdataset = MOTDataset(
-            data_dir=os.path.join(get_yolox_datadir(), "mot"),
+            data_dir=os.path.join(get_yolox_datadir(), "MOT20"),
             json_file=self.val_ann,
             img_size=self.test_size,
-            name='test',   # change to train when running on training set
+            name='train', # change to train when running on training set	
             preproc=ValTransform(
                 rgb_means=(0.485, 0.456, 0.406),
                 std=(0.229, 0.224, 0.225),
