@@ -9,20 +9,20 @@ Step1. Install ByteTrack.
 ```shell
 git clone git@github.com:InceptionISA/Multi-Object-Tracking.git
 cd Multi-Object-Tracking/ByteTrack
-pip3 install -r requirements.txt
-python3 setup.py develop
+pip install -r requirements.txt
+python setup.py develop
 ```
 
 Step2. Install [pycocotools](https://github.com/cocodataset/cocoapi).
 
 ```shell
-pip3 install cython; pip3 install 'git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI'
+pip install cython; pip3 install 'git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI'
 ```
 
 Step3. Others
 
 ```shell
-pip3 install cython_bbox
+pip install cython_bbox
 ```
 
 <!-- ### 2. Docker build
@@ -83,7 +83,7 @@ datasets
 Then, you need to turn the dataset to COCO format :
 
 ```shell
-python3 tools/convert_mot20_to_coco.py
+python tools/convert_mot20_to_coco.py
 
 ```
 
