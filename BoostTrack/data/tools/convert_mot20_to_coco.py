@@ -14,7 +14,7 @@ if __name__ == "__main__":
     if not os.path.exists(OUT_PATH):
         os.makedirs(OUT_PATH)
 
-    data_path = os.path.join(DATA_PATH, "train")  # Since val_half comes from train
+    data_path = os.path.join(DATA_PATH, "test")  # Since val_half comes from train
     out_path = os.path.join(OUT_PATH, "{}.json".format(SPLIT))
     
     out = {
